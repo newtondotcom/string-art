@@ -5,7 +5,6 @@ from image import *
 from point_generation import *
 
 from cv2 import cv2
-from colorama import init
 from termcolor import colored
 import numpy as np
 import os
