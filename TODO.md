@@ -1,0 +1,4 @@
+- picture to square
+- export nail number
+- put umtiple version with different parameters to choose the best
+- include hardware tutorial
