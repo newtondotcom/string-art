@@ -1,6 +1,6 @@
 from colorama import init
 from termcolor import colored
-from cv2 import cv2
+import cv2
 from point import Point
 
 def img(name):
@@ -42,7 +42,7 @@ def circle_img(width, height, radius, length, center, image):
         for x in range(width):
             if Point(x,y).distance(center) > radius:
                 image[y,x] = 0xFF
-    
+
     print(colored("DONE", "green"))
 
 def drawline(image, origin, end):
