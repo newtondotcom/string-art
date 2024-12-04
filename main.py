@@ -4,7 +4,7 @@ from point import Point
 from image import *
 from point_generation import *
 
-from cv2 import cv2
+import cv2
 from termcolor import colored
 import numpy as np
 import os
@@ -13,8 +13,9 @@ import time
 
 IMG = "./images/zuko3.png"
 DECOMPOSITION = False
-NUMBER_LINES = 10000
-NUMBER_POINTS = 360
+NUMBER_LINES = 1000
+NUMBER_POINTS = 240 # 4 quarters with 60 nails
+CIRCLE_DIAMETER = 0.5 # 0.5 meter
 
 def get_data(dictionnary, pt, pt2):
     """
@@ -103,7 +104,7 @@ def main():
     name = os.path.splitext(IMG)[0] + "-string-art.png"
     cv2.imwrite(name, result)
     print(colored("DONE", "green"))
-
+    print("{} meters of thread used".format(CIRCLE_DIAMETER*number_lines) )
     print("Program ended successfully in {} seconds".format(time.time() - tic))
 
 
