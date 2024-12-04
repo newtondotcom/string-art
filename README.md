@@ -3,6 +3,7 @@
 ## Auteur
 
 - [Alexandre Jeunot-Caire](https://github.com/jeunotca)
+- [Robin Augereau](https://github.com/newtondotcom)
 
 
 ## Visuel
