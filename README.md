@@ -16,6 +16,9 @@
 
 ### Dot Painting
 <picture>
+<img src="images/meliodas3.jpg" alt="StringArt - Original image" width="200"/>
+</picture>
+<picture>
 <img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" width="200"/>
 </picture>
 <picture>
