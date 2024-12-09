@@ -8,19 +8,20 @@
 ## Visuals
 ### String Art
 <picture>
-<img src="images/twd2.jpg" alt="StringArt - Original image" style="margin: auto;"/>
+<img src="images/twd2.jpg" alt="StringArt - Original image" style="margin: auto; width: 48%; height: auto;"/>
 </picture>
 <picture>
-<img src="images/twd2-string-art.png" alt="StringArt - Stringified image" style="margin: auto;"/>
+<img src="images/twd2-string-art.png" alt="StringArt - Stringified image" style="margin: auto; width: 48%; height: auto;"/>
 </picture>
 
 ### Dot Painting
 <picture>
-<img src="images/meliodas3_filled_a5_centered.jpg" alt="Dotpainting uncolored" style="margin: auto;"/>
+<img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" style="margin: auto; width: 48%; height: auto;"/>
 </picture>
 <picture>
-<img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" style="margin: auto;"/>
+<img src="images/meliodas3_filled_a5_centered.jpg" alt="Dotpainting uncolored" style="margin: auto; width: 48%; height: auto;"/>
 </picture>
+
 
 ## Description
 
