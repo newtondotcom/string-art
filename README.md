@@ -43,25 +43,22 @@ $ cd string-art
 
 ### Installation
 
+I would recommand using [uv](https://github.com/astral-sh/uv) so
 ```bash
-$ pip install -r requirements.txt
+$ uv sync
 ```
-
-**OR**
-
-* By downloading the sources and extracting the archive
 
 ## Using the String Art
 
 ### Running the project
 
 ```bash
-$ python3 main.py
+$ uv run stringart.py
 ```
 
 ### Parameters
 
-In `main.py`, you will find the following parameters:
+In `stringart.py`, you will find the following parameters:
 
 ```python
 IMG = "./images/zuko3.png"
@@ -80,7 +77,7 @@ NUMBER_POINTS = 360
 ### Running the project
 
 ```bash
-$ python3 paint.py
+$ uv run paint.py
 ```
 
 ### Parameters

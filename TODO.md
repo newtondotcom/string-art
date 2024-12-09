@@ -5,3 +5,4 @@
 - [ ] put multiples version with different parameters to choose the best
 - [ ] include hardware tutorial
 - [x] compute thread length
+- [x] add dot painting
