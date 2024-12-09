@@ -6,7 +6,8 @@ from matplotlib.backends.backend_pdf import PdfPages
 REGION_SIZE = 5
 IMAGE_PATH = 'images/meliodas3.jpg'
 OUTPUT = 'JPG'  # 'PDF' or 'JPG'
-MAX_DOT_SIZE = REGION_SIZE * 12 # this value changes depending on the region size and the format of the image
+MAX_DOT_SIZE = REGION_SIZE * 10 # this value changes depending on the region size and the format of the image
+TRESHOLD_NO_DOT = MAX_DOT_SIZE / 10
 
 def load_image(image_path):
     """Load an image from a file path."""
@@ -53,6 +54,8 @@ def plot_and_save_varying_dots(dot_array, region_size, save_path, image_size, ho
     for i in range(dot_array.shape[0]):
         for j in range(dot_array.shape[1]):
             dot_size = (255 - dot_array[i, j]) / 255 * MAX_DOT_SIZE  # Invert brightness for dot size
+            if dot_size < TRESHOLD_NO_DOT:
+                continue
             if hollow:
                 ax.scatter(j * region_size + x_offset, i * region_size + y_offset, s=dot_size, edgecolors='black', facecolors='none', linewidth=edge_width)
             else:
@@ -89,7 +92,7 @@ if OUTPUT == 'PDF':
     filled_output_path = image_name.replace('.'+image_extension, '_filled_a5_centered.pdf')
     hollow_output_path = image_name.replace('.'+image_extension, '_hollow_a5_centered.pdf')
 elif OUTPUT == 'JPG':
-    filled_output_path = image_name.replace('.'+image_extension '_filled_a5_centered.jpg')
+    filled_output_path = image_name.replace('.'+image_extension, '_filled_a5_centered.jpg')
     hollow_output_path = image_name.replace('.'+image_extension, '_hollow_a5_centered.jpg')
 
 # Plot the dots with varying sizes and save the filled image

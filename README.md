@@ -89,6 +89,7 @@ REGION_SIZE = 5
 IMAGE_PATH = 'images/meliodas3.jpg'
 OUTPUT = 'JPG'  # 'PDF' or 'JPG'
 MAX_DOT_SIZE = REGION_SIZE * 12 # this value changes depending on the region size and the image format
+TRESHOLD_NO_DOT = MAX_DOT_SIZE / 10 # this value changes depending on the region size and the image format, and is used to determine if a region should be filled with dots or not
 ```
 
 * `IMAGE_PATH` refers to the relative path of the image to use. In this example, it is the `zuko3.png` image located in the `images` folder.
