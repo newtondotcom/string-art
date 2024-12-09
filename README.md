@@ -1,45 +1,41 @@
-# [String Art !](https://www.youtube.com/watch?v=ZspIYyTzPG0)
+# String Art & Dot Painting
 
-## Auteur
+## Authors
 
 - [Alexandre Jeunot-Caire](https://github.com/jeunotca)
 - [Robin Augereau](https://github.com/newtondotcom)
 
+## Visuals
+### String Art
+<picture>
+<img src="images/twd2.jpg" alt="StringArt - Original image" style="margin: auto;"/>
+</picture>
+<picture>
+<img src="images/twd2-string-art.png" alt="StringArt - Stringified image" style="margin: auto;"/>
+</picture>
 
-## Visuel
-
-<img src="images/image.jpg" alt="Comparaison de string art avec la réalité" style="margin: auto;"/>
+### Dot Painting
+<picture>
+<img src="images/meliodas3_filled_a5_centered.jpg" alt="Dotpainting uncolored" style="margin: auto;"/>
+</picture>
+<picture>
+<img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" style="margin: auto;"/>
+</picture>
 
 ## Description
 
-Programme <b>personnel</b> artistique développé en `Python` permettant de créer des oeuvres basées sur le `string art`, c'est-à-dire l'entrelacement de fils faisant ressortir une image.
-
-Dans la version que j'ai créée, il est [en théorie possible]("https://www.dailymotion.com/video/x4mv8h1") de n'utiliser qu'une seule ficelle que l'on déroule en suivant l'ordre donné par mon algorithme.
-
-### Implémentation
-
-Le programme a été développé en `Python` en utilisant principalement les bibliothèques `opencv` (cv2) et `numpy`.
+- Fork -> string art
+- Dot painting -> coded by me
 
 ## Installation
 
-### Récupération des sources
+### Retrieving the sources
 
-* Depuis l'invité de commandes (HTTP):
+* From the command line (HTTP):
 ```bash
 $ git clone https://github.com/jeunotca/string-art.git
 $ cd string-art
 ```
-
-**OU**
-
-* Depuis l'invité de commandes (SSH):
-```bash
-$ git clone git@github.com:jeunotca/string-art.git
-$ cd string-art
-```
-
-**OU**
-* En téléchargeant les sources puis en extrayant l'archive
 
 ### Installation
 
@@ -47,21 +43,21 @@ $ cd string-art
 $ pip install -r requirements.txt
 ```
 
-**OU**
+**OR**
 
-* En téléchargeant les sources puis en extrayant l'archive
+* By downloading the sources and extracting the archive
 
-## Utilisation
+## Using the String Art
 
-### Exécution du projet
+### Running the project
 
 ```bash
 $ python3 main.py
 ```
 
-### Paramètres
+### Parameters
 
-Dans  `main.py`, vous trouverez les paramètres suivants :
+In `main.py`, you will find the following parameters:
 
 ```python
 IMG = "./images/zuko3.png"
@@ -70,7 +66,31 @@ NUMBER_LINES = 10000
 NUMBER_POINTS = 360
 ```
 
-* `IMG` correspond à l'adresse relative de l'image à utiliser. Dans cet exemple, il s'agit de l'image `zuko3.png` situé dans le dossier `images`.
-* `DECOMPOSITION` est un paramètre permettant la [réalisation de vidéos](https://www.youtube.com/watch?v=ZspIYyTzPG0). Le passer à `True` provoquera la création d'une image par nouveau lien tissé, permettant ensuite de les assembler dans un outil de montage vidéo.
-* `NUMBER_LINES` représente le nombre de liens à tisser. Plus il y en a, plus l'image sera détaillée et proche de la réalité, au prix d'un temps d'exécution accru.
-* `NUMBER_POINTS` représente le nombre de points constituants le cercle externe. Plus il y en a, plus l'image sera détaillée grâce à des liens qui suivront plus fidèlement les courbes de l'image d'origine.
+* `IMG` refers to the relative path of the image to use. In this example, it is the `zuko3.png` image located in the `images` folder.
+* `DECOMPOSITION` is a parameter for creating [videos](https://www.youtube.com/watch?v=ZspIYyTzPG0). Setting it to `True` will create an image for each new woven line, which can then be assembled into a video using a video editing tool.
+* `NUMBER_LINES` represents the number of lines to weave. The more lines, the more detailed and closer to reality the image will be, at the cost of increased execution time.
+* `NUMBER_POINTS` represents the number of points on the outer circle. The more points there are, the more detailed the image will be, as the lines will follow the curves of the original image more closely.
+
+## Using the Dot Painting
+
+### Running the project
+
+```bash
+$ python3 paint.py
+```
+
+### Parameters
+
+In `paint.py`, you will find the following parameters:
+
+```python
+REGION_SIZE = 5
+IMAGE_PATH = 'images/meliodas3.jpg'
+OUTPUT = 'JPG'  # 'PDF' or 'JPG'
+MAX_DOT_SIZE = REGION_SIZE * 12 # this value changes depending on the region size and the image format
+```
+
+* `IMAGE_PATH` refers to the relative path of the image to use. In this example, it is the `zuko3.png` image located in the `images` folder.
+* `REGION_SIZE` is the size of the regions that will be used to calculate the average color. The smaller the region size, the more detailed the image will be, but the more dots will be needed to represent it. The larger the region size, the less detailed the image will be, but the fewer dots will be needed to represent it.
+* `OUTPUT` specifies the format in which the image will be saved, either `'JPG'` or `'PDF'`.
+* `MAX_DOT_SIZE` is the maximum size of the dots that will be used. This value changes depending on the region size and the image format, as the dots will need to vary in size to best represent the image.
