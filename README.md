@@ -8,25 +8,25 @@
 ## Visuals
 ### String Art
 <picture>
-<img src="images/twd2.jpg" alt="StringArt - Original image" style="margin: auto; width: 48%; height: auto;"/>
+<img src="images/twd2.jpg" alt="StringArt - Original image" width="200"/>
 </picture>
 <picture>
-<img src="images/twd2-string-art.png" alt="StringArt - Stringified image" style="margin: auto; width: 48%; height: auto;"/>
+<img src="images/twd2-string-art.png" alt="StringArt - Stringified image" width="200"/>
 </picture>
 
 ### Dot Painting
 <picture>
-<img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" style="margin: auto; width: 48%; height: auto;"/>
+<img src="images/meliodas3_hollow_a5_centered.jpg" alt="Dotpainting colored" width="200"/>
 </picture>
 <picture>
-<img src="images/meliodas3_filled_a5_centered.jpg" alt="Dotpainting uncolored" style="margin: auto; width: 48%; height: auto;"/>
+<img src="images/meliodas3_filled_a5_centered.jpg" alt="Dotpainting uncolored" width="200""/>
 </picture>
 
 
 ## Description
 
-- Fork -> string art
-- Dot painting -> coded by me
+- The "String Art" project is a forked version of an existing project.
+- The "Dot Painting" project was coded by me.
 
 ## Installation
 
@@ -34,7 +34,7 @@
 
 * From the command line (HTTP):
 ```bash
-$ git clone https://github.com/jeunotca/string-art.git
+$ git clone https://github.com/newtondotcom/string-art
 $ cd string-art
 ```
 
