@@ -146,7 +146,7 @@ func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath st
 			x := float64(j*regionSize)*figWidth/originalWidth + xOffset
 			y := float64(i*regionSize)*figHeight/originalHeight + yOffset
 			radius := dotSize / 2 * figWidth / originalWidth
-			canvas.Circle(int(x), int(y), int(radius), "fill:none;stroke:black")
+			canvas.Circle(int(x), int(y), int(radius), "fill:black;stroke:black")
 		}
 	}
 
