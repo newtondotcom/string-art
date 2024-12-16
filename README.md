@@ -45,6 +45,7 @@ $ cd string-art
 
 I would recommand using [uv](https://github.com/astral-sh/uv) so
 ```bash
+$ cd string-art
 $ uv sync
 ```
 
@@ -58,7 +59,7 @@ $ uv run stringart.py
 
 ### Parameters
 
-In `stringart.py`, you will find the following parameters:
+In `string-art/main.py`, you will find the following parameters:
 
 ```python
 IMG = "./images/zuko3.png"
@@ -77,22 +78,25 @@ NUMBER_POINTS = 360
 ### Running the project
 
 ```bash
-$ uv run paint.py
+$ cd dotpainting
+$ go run main.go
 ```
 
 ### Parameters
 
-In `paint.py`, you will find the following parameters:
+In `dotpainting/main.go`, you will find the following parameters:
 
-```python
-REGION_SIZE = 5
-IMAGE_PATH = 'images/meliodas3.jpg'
-OUTPUT = 'JPG'  # 'PDF' or 'JPG'
-MAX_DOT_SIZE = REGION_SIZE * 12 # this value changes depending on the region size and the image format
-TRESHOLD_NO_DOT = MAX_DOT_SIZE / 10 # this value changes depending on the region size and the image format, and is used to determine if a region should be filled with dots or not
+```go
+REGION_SIZE      = 10
+IMAGE_PATH       = "../imagep/image.jpg"
+OUTPUT_SVG_PATH  = "../imagep/output.svg"
+MAX_DOT_SIZE     = REGION_SIZE
+THRESHOLD_NO_DOT = MAX_DOT_SIZE / 10
+A5_WIDTH         = 148.5 // in mm
+A5_HEIGHT        = 210.0 // in mm
 ```
 
-* `IMAGE_PATH` refers to the relative path of the image to use. In this example, it is the `zuko3.png` image located in the `images` folder.
-* `REGION_SIZE` is the size of the regions that will be used to calculate the average color. The smaller the region size, the more detailed the image will be, but the more dots will be needed to represent it. The larger the region size, the less detailed the image will be, but the fewer dots will be needed to represent it.
-* `OUTPUT` specifies the format in which the image will be saved, either `'JPG'` or `'PDF'`.
+* `IMAGE_PATH` refers to the relative path of the image to use.
+* `OUTPUT_SVG_PATH` refers to the relative path of the output file.
+* `REGION_SIZE` is the size of the regions that will be used to calculate the average color. The smaller the region size, the more detailed the image will be, but the more dots will be needed to represent it. The larger the region size, the less detailed the image will be, but the fewer dots will be needed to represent it
 * `MAX_DOT_SIZE` is the maximum size of the dots that will be used. This value changes depending on the region size and the image format, as the dots will need to vary in size to best represent the image.
