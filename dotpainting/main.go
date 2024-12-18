@@ -7,16 +7,17 @@ import (
 	"image/png"
 	"log"
 	"os"
+	"strings"
 
 	svgo "github.com/ajstarks/svgo"
 )
 
 const (
-	REGION_SIZE      = 10
-	IMAGE_PATH       = "../imagep/image.jpg"
+	REGION_SIZE      = 30
+	IMAGE_PATH       = "../imagep/zoom.jpg"
 	OUTPUT_SVG_PATH  = "../imagep/output.svg"
-	MAX_DOT_SIZE     = REGION_SIZE
-	THRESHOLD_NO_DOT = MAX_DOT_SIZE / 10
+	MAX_DOT_SIZE     = REGION_SIZE / 5 * 4
+	THRESHOLD_NO_DOT = MAX_DOT_SIZE / 50
 	A5_WIDTH         = 148.5 // in mm
 	A5_HEIGHT        = 210.0 // in mm
 )
@@ -27,6 +28,9 @@ func main() {
 	if err != nil {
 		log.Fatalf("Failed to load image: %v", err)
 	}
+
+	// Ensure the image is in portrait orientation
+	img = ensurePortrait(img)
 
 	// Convert image to grayscale
 	grayImg := convertToGrayscale(img)
@@ -52,6 +56,29 @@ func loadImage(filePath string) (image.Image, error) {
 	}
 
 	return img, nil
+}
+
+// rotateImage90 rotates an image by 90 degrees clockwise.
+func rotateImage90(img image.Image) image.Image {
+	bounds := img.Bounds()
+	rotatedImg := image.NewRGBA(image.Rect(0, 0, bounds.Dy(), bounds.Dx()))
+
+	for y := bounds.Min.Y; y < bounds.Max.Y; y++ {
+		for x := bounds.Min.X; x < bounds.Max.X; x++ {
+			rotatedImg.Set(bounds.Dy()-y-1, x, img.At(x, y))
+		}
+	}
+
+	return rotatedImg
+}
+
+// ensurePortrait ensures the image is in portrait orientation.
+func ensurePortrait(img image.Image) image.Image {
+	bounds := img.Bounds()
+	if bounds.Dx() > bounds.Dy() {
+		return rotateImage90(img)
+	}
+	return img
 }
 
 // convertToGrayscale converts an image to grayscale.
@@ -115,11 +142,21 @@ func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath st
 	}
 	defer file.Close()
 
-	canvas := svgo.New(file)
-	canvas.Start(int(A5_WIDTH*10), int(A5_HEIGHT*10)) // SVGO uses units in pixels
+	new_path := strings.Replace(savePath, ".svg", "_filled.svg", -1)
+	file_filled, err := os.Create(new_path)
+	if err != nil {
+		log.Fatalf("Failed to create SVG file: %v", err)
+	}
+	defer file_filled.Close()
+
+	canvasHollow := svgo.New(file)
+	canvasFilled := svgo.New(file_filled)
+	canvasHollow.Start(int(A5_WIDTH*10), int(A5_HEIGHT*10)) // SVGO uses units in pixels
+	canvasFilled.Start(int(A5_WIDTH*10), int(A5_HEIGHT*10)) // SVGO uses units in pixels
 
 	// Set white background
-	canvas.Rect(0, 0, int(A5_WIDTH*10), int(A5_HEIGHT*10), "fill:white")
+	canvasHollow.Rect(0, 0, int(A5_WIDTH*10), int(A5_HEIGHT*10), "fill:white")
+	canvasFilled.Rect(0, 0, int(A5_WIDTH*10), int(A5_HEIGHT*10), "fill:white")
 
 	originalWidth := float64(imageSize.X)
 	originalHeight := float64(imageSize.Y)
@@ -146,10 +183,12 @@ func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath st
 			x := float64(j*regionSize)*figWidth/originalWidth + xOffset
 			y := float64(i*regionSize)*figHeight/originalHeight + yOffset
 			radius := dotSize / 2 * figWidth / originalWidth
-			canvas.Circle(int(x), int(y), int(radius), "fill:black;stroke:black")
+			canvasHollow.Circle(int(x), int(y), int(radius), "fill:black;stroke:black")
+			canvasFilled.Circle(int(x), int(y), int(radius), "fill:none;stroke:black")
 		}
 	}
 
-	canvas.End()
+	canvasHollow.End()
+	canvasFilled.End()
 	log.Printf("SVG saved as %s.", savePath)
 }
