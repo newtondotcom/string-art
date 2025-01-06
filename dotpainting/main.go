@@ -13,13 +13,13 @@ import (
 )
 
 const (
-	REGION_SIZE      = 30
+	REGION_SIZE      = 35
 	IMAGE_PATH       = "../imagep/zoom.jpg"
 	OUTPUT_SVG_PATH  = "../imagep/output.svg"
 	MAX_DOT_SIZE     = REGION_SIZE / 5 * 4
 	THRESHOLD_NO_DOT = MAX_DOT_SIZE / 50
-	A5_WIDTH         = 148.5 // in mm
-	A5_HEIGHT        = 210.0 // in mm
+	A5_WIDTH         = 152.0 // in mm
+	A5_HEIGHT        = 203.0 // in mm
 )
 
 func main() {
@@ -134,7 +134,6 @@ func imageToVaryingDots(img *image.Gray, regionSize int) [][]float64 {
 	return dotArray
 }
 
-// plotAndSaveVaryingDotsSVG generates and saves an SVG with varying dot sizes.
 func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath string, imageSize image.Point) {
 	file, err := os.Create(savePath)
 	if err != nil {
@@ -164,13 +163,16 @@ func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath st
 
 	var figWidth, figHeight float64
 	if aspectRatio > (A5_WIDTH / A5_HEIGHT) {
+		// Image is wider than the target canvas
 		figWidth = A5_WIDTH * 10
 		figHeight = (A5_WIDTH * 10) / aspectRatio
 	} else {
+		// Image is taller than the target canvas
 		figHeight = A5_HEIGHT * 10
 		figWidth = (A5_HEIGHT * 10) * aspectRatio
 	}
 
+	// Calculate offsets to center the figure
 	xOffset := (A5_WIDTH*10 - figWidth) / 2
 	yOffset := (A5_HEIGHT*10 - figHeight) / 2
 
@@ -180,9 +182,12 @@ func plotAndSaveVaryingDotsSVG(dotArray [][]float64, regionSize int, savePath st
 			if dotSize < THRESHOLD_NO_DOT {
 				continue
 			}
+			// Calculate scaled positions
 			x := float64(j*regionSize)*figWidth/originalWidth + xOffset
 			y := float64(i*regionSize)*figHeight/originalHeight + yOffset
 			radius := dotSize / 2 * figWidth / originalWidth
+
+			// Draw circles
 			canvasHollow.Circle(int(x), int(y), int(radius), "fill:black;stroke:black")
 			canvasFilled.Circle(int(x), int(y), int(radius), "fill:none;stroke:black")
 		}
